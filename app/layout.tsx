@@ -56,7 +56,7 @@ export default function RootLayout({children, header}: Readonly<{
                                 3Wart Studio
                             </a>
                         </p>
-                        <ThemeSwitcher/>
+
                     </footer>
                 </div>
             </main>
