@@ -1,17 +1,16 @@
-import FetchDataSteps from "@/components/tutorial/fetch-data-steps";
 import {createClient} from "@/utils/supabase/server";
 import {InfoIcon} from "lucide-react";
 import {redirect} from "next/navigation";
 
-export default async function ProtectedPage() {
+export default async function AdminPage() {
     const supabase = await createClient();
 
     const {
         data: {user},
     } = await supabase.auth.getUser();
     console.log('data: ', user)
-    if (!user) {
-        return redirect("/sign-in");
+    if (!user || user.role!='admin') {
+        return redirect("/sign-in?error=access denied, change user to admin");
     }
 
     return (
@@ -19,7 +18,7 @@ export default async function ProtectedPage() {
             <div className="w-full">
                 <div className="bg-accent text-sm p-3 px-5 rounded-md text-foreground flex gap-3 items-center">
                     <InfoIcon size="16" strokeWidth={2}/>
-                    This is a protected page that you can only see as an authenticated
+                    This is an admin page that you can only see as an administrator
                     user
                 </div>
             </div>
@@ -29,10 +28,7 @@ export default async function ProtectedPage() {
           {JSON.stringify(user, null, 2)}
         </pre>
             </div>
-            <div>
-                <h2 className="font-bold text-2xl mb-4">Next steps</h2>
-                <FetchDataSteps/>
-            </div>
+
         </div>
     );
 }
