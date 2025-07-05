@@ -5,6 +5,11 @@ const nextConfig: NextConfig = {
     images: {
         remotePatterns: [new URL('https://uwyhqkgixewlbhwkxqmg.supabase.co/storage/v1/object/public/images/**')],
     },
+    experimental: {
+        serverActions: {
+            bodySizeLimit: '10mb',
+        },
+    },
 };
 
 export default nextConfig;
