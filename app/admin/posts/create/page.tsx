@@ -1,11 +1,8 @@
-import {createClient} from "@/utils/supabase/server";
-import {redirect} from "next/navigation";
 import {ArrowLeft, InfoIcon} from "lucide-react";
 import CreateForm from "@/app/admin/posts/create/createForm";
 import {authorizePage} from "@/actions/auth/auth";
 import {getCategories} from "@/actions/articles/categories";
 import Link from "next/link";
-import LoadingSpinner from "@/components/ui/my_elements/loadingSpinner";
 import React from "react";
 
 interface Category{
@@ -15,7 +12,6 @@ interface Category{
 }
 
 export type {Category}
-
 
 export default async function AdminPage() {
 

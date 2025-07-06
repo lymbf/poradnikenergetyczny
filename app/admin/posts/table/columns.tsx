@@ -8,10 +8,12 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuLabel, DropdownMenuSeparator,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import {Article} from "@/app/admin/posts/interfaces";
+import Link from "next/link";
 
 export type TableArticle = {
     id: string,
@@ -19,6 +21,7 @@ export type TableArticle = {
     author: string,
     created_at: string
 }
+
 
 export const columns: ColumnDef<Article>[] = [
     {
@@ -73,7 +76,7 @@ export const columns: ColumnDef<Article>[] = [
     },
     {
         accessorKey: 'created_at',
-        header:  ({column}) => {
+        header: ({column}) => {
             return (
                 <Button
                     variant="ghost"
@@ -84,7 +87,9 @@ export const columns: ColumnDef<Article>[] = [
                 </Button>
             )
         },
-        cell: ({cell,row})=>{return new Date(row.original.created_at || '').toLocaleString()}
+        cell: ({cell, row}) => {
+            return new Date(row.original.created_at || '').toLocaleString()
+        }
     },
     {
         id: "actions",
@@ -107,8 +112,9 @@ export const columns: ColumnDef<Article>[] = [
                             Copy article ID
                         </DropdownMenuItem>
                         <DropdownMenuSeparator/>
-                        <DropdownMenuItem>View customer</DropdownMenuItem>
-                        <DropdownMenuItem>View payment details</DropdownMenuItem>
+                        <Link href ={`/admin/posts/edit/${article.id}`}><DropdownMenuItem  className={'hover:cursor-pointer'}>Edit post</DropdownMenuItem>
+                        </Link>
+
                     </DropdownMenuContent>
                 </DropdownMenu>
             )

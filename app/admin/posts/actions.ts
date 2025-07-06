@@ -44,9 +44,16 @@ export const createPostAction = async (category: Category | null,
             author: user?.id
         }
         console.log('posting the following: ', post)
-        const res = await supabase.from('articles').insert(post)
-        if(res)return {message:'post added successfully', success:true}
-        console.log('post response: ', res)
+        try{
+            const res = await supabase.from('articles').insert(post)
+            res && console.log('post response: ', res)
+            if(res.error)throw new Error(res.error.message)
+            if (!res.error) return {message: 'post added successfully', success: true}
+        }catch(err){
+            console.log('err: ', err)
+            return {message: 'sth went wrong, couldnt add the article', success:false}
+        }
+
     } else {
         console.log('sth is missing', 'post: ', {
             category: category?.id,
@@ -56,25 +63,25 @@ export const createPostAction = async (category: Category | null,
             title: title,
             author: user?.id
         })
-        return {message:'sth went wrong adding the article', success:false}
+        return {message: 'form filled incorrectly', success: false}
     }
 
 
     // console.log('form data: ', title, image, 'category: ', parseInt(category), 'richText: ', richText, 'UUID: ', user?.id)
 }
 
-export const deletPostsAction = async (rows:any, prevState:any)=>{
+export const deletPostsAction = async (rows: any, prevState: any) => {
     const supabase = await createClient();
     const ids = Object.keys(rows)
     const res = await supabase
         .from('articles')
         .delete()
         .in('id', ids)
-    if(res.status === 204){
+    if (res.status === 204) {
         console.log('posts deleted')
-        return {message:'posts deleted succesfully', success:true, ids:ids}
-    }else{
+        return {message: 'posts deleted succesfully', success: true, ids: ids}
+    } else {
         console.log('unable to delete')
-        return {message:'unable to delete posts, try again later', success:false, ids:[]}
+        return {message: 'unable to delete posts, try again later', success: false, ids: []}
     }
 }

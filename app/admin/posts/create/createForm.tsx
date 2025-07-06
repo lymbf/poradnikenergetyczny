@@ -9,6 +9,8 @@ import {createPostAction} from "@/app/admin/posts/actions";
 import {Category} from "@/app/admin/posts/create/page";
 import {getSubcategories} from "@/app/admin/posts/create/clientActions";
 import LoadingSpinner from "@/components/ui/my_elements/loadingSpinner";
+import ErrorBox from "@/components/ui/my_elements/errorBox";
+import MessageBox from "@/components/ui/my_elements/messageBox";
 
 export default function CreateForm({className, categories}: { className?: string, categories: Category[] | null }) {
     const [category, setCategory] = useState<string>('');
@@ -55,6 +57,12 @@ export default function CreateForm({className, categories}: { className?: string
             setClear(true)
             setShowMessage(true)
             setTimeout(()=>{setShowMessage(false)}, 4000)
+        }
+        if(state?.message.length && !state?.success){
+            setShowMessage(true)
+            setTimeout(() => {
+                setShowMessage(false)
+            }, 3000)
         }
     }, [state]);
 
@@ -114,8 +122,8 @@ export default function CreateForm({className, categories}: { className?: string
                 <CardFooter className={'flex justify-between'}>
                     <Button type='submit' className={'w-[130px] h-[33px]'}>Dodaj post</Button>
                     {<div className='form-error text-red-600 min-h-[40px]'>
-                        {showMessage && state?.success && <span className={'text-green-500'}>{state?.message}</span>}
-                        {showMessage && !state?.success && <span className={'text-red-500'}>{state?.message}</span>}
+                        {showMessage && state?.success && <MessageBox message={state?.message}/>}
+                        {showMessage && !state?.success && state?.message && <ErrorBox errorMessage={state?.message}/>}
                     </div>}
                 </CardFooter>
             </Card>

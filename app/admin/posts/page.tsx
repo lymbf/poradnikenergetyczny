@@ -1,8 +1,6 @@
 import {cn} from "@/lib/utils";
 import {Card, CardContent, CardHeader} from "@/components/ui/card";
-import {getArticles, getCategories} from "@/actions/articles/categories";
 import PostsTable from "@/app/admin/posts/table/postsTable";
-import {Article} from "@/app/admin/posts/interfaces";
 import React from "react";
 import Link from "next/link";
 import {ArrowLeft} from "lucide-react";
