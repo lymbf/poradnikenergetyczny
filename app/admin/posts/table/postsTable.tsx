@@ -20,13 +20,14 @@ import {
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import {columns} from "@/app/admin/posts/table/columns";
-import {Article} from "@/app/admin/posts/interfaces";
+
 import {flexRender, useReactTable} from "@tanstack/react-table";
 import {getArticles} from "@/actions/articles/articles";
 import {deletPostsAction} from "@/app/admin/posts/actions";
 import LoadingSpinner from "@/components/ui/my_elements/loadingSpinner";
 import ErrorBox from "@/components/ui/my_elements/errorBox";
 import MessageBox from "@/components/ui/my_elements/messageBox";
+import {Article} from "@/interfaces/articles";
 
 
 export default function PostsTable({className,}: { className?: string, }) {

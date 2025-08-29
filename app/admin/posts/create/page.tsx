@@ -1,17 +1,12 @@
 import {ArrowLeft, InfoIcon} from "lucide-react";
 import CreateForm from "@/app/admin/posts/create/createForm";
 import {authorizePage} from "@/actions/auth/auth";
-import {getCategories} from "@/actions/articles/categories";
 import Link from "next/link";
 import React from "react";
+import {Category} from "@/interfaces/articles";
+import {getCategories} from "@/actions/articles/articles";
 
-interface Category{
-    id:number,
-    created_at?: string,
-    name:string,
-}
 
-export type {Category}
 
 export default async function AdminPage() {
 

@@ -4,8 +4,13 @@ import Link from "next/link";
 import {Badge} from "./ui/badge";
 import {Button} from "./ui/button";
 import {createClient} from "@/utils/supabase/server";
+import {cn} from "@/lib/utils";
 
-export default async function AuthButton() {
+export default async function AuthButton({dark, front, className}: {
+    dark?: boolean,
+    front?: boolean,
+    className?: string
+}) {
     const supabase = await createClient();
 
     const {
@@ -15,7 +20,7 @@ export default async function AuthButton() {
     if (!hasEnvVars) {
         return (
             <>
-                <div className="flex gap-4 items-center">
+                <div className={cn("flex gap-4 items-center", className)}>
                     <div>
                         <Badge
                             variant={"default"}
@@ -37,34 +42,42 @@ export default async function AuthButton() {
                         <Button
                             asChild
                             size="sm"
-                            variant={"default"}
+                            variant={dark ? "ghost" : "default"}
                             disabled
                             className="opacity-75 cursor-none pointer-events-none"
                         >
                             <Link href="/sign-up">Sign up</Link>
                         </Button>
+
                     </div>
                 </div>
             </>
         );
     }
     return user ? (
-        <div className="flex items-center gap-4">
-            Hey, {user.email}!
+        <div className="flex  flex-col-reverse sm:flex-row items-center gap-2 sm:gap-4">
+            <div className={'flex flex-row max-w-[200px] text-[12px] sm:text-[12px]'}><div className={'hidden sm:block mr-1'}>Witaj,</div> {`  ${user.email}!`}</div>
             <form action={signOutAction}>
-                <Button type="submit" variant={"outline"}>
+                <Button type="submit" variant={"outline"} size={'customSmall'}>
                     Sign out
                 </Button>
             </form>
         </div>
     ) : (
-        <div className="flex gap-2">
-            <Button asChild size="sm" variant={"outline"}>
+        <div className={cn("flex gap-2 items-center", className)}>
+            {!front && <Button asChild size="sm" variant={"outline"}>
                 <Link href="/sign-in">Sign in</Link>
-            </Button>
-            <Button asChild size="sm" variant={"default"}>
+            </Button>}
+            {!front && <Button asChild size="sm" variant={'default'}>
                 <Link href="/sign-up">Sign up</Link>
-            </Button>
+            </Button>}
+
+            {front && <Button asChild size="sm" variant={'outline'}>
+                <Link href="/sign-in">Sign in</Link>
+            </Button>}
+            {front && <Button asChild size="sm" variant={'outline'}>
+                <Link href="/sign-up">Sign up</Link>
+            </Button>}
         </div>
     );
 }

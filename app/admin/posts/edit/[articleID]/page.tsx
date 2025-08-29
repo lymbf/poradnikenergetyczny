@@ -4,9 +4,8 @@ import {cn} from "@/lib/utils";
 import {getArticle} from "@/actions/articles/articles";
 import {useParams} from "next/navigation";
 import React, {useEffect, useState} from "react";
-import {Article} from "@/app/admin/posts/interfaces";
-import {InfoIcon} from "lucide-react";
 import ErrorBox from "@/components/ui/my_elements/errorBox";
+import {Article} from "@/interfaces/articles";
 
 type Params = {
     articleID:string

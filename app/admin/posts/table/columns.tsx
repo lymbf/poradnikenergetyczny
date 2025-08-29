@@ -12,8 +12,8 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
-import {Article} from "@/app/admin/posts/interfaces";
 import Link from "next/link";
+import {Article} from "@/interfaces/articles";
 
 export type TableArticle = {
     id: string,

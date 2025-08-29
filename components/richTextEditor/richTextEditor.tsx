@@ -11,10 +11,11 @@ interface RichTextEditorProps {
     content: string;
     onChange?: (content: string) => void;
     editable?: boolean;
-    clear?:boolean
+    clear?:boolean,
+    neClassName?:string
 }
 
-export default function RichTextEditor({content, onChange, editable,clear}: RichTextEditorProps) {
+export default function RichTextEditor({content, onChange, editable,clear, neClassName}: RichTextEditorProps) {
     const isEditable = editable ?? true;
 
 
@@ -59,7 +60,7 @@ export default function RichTextEditor({content, onChange, editable,clear}: Rich
             attributes: {
                 class: isEditable
                     ? "min-h-[156px] border rounded-md bg-foreground text-background py-2 px-3"
-                    : "",
+                    : neClassName || '',
             },
         },
         onUpdate: ({ editor }) => {

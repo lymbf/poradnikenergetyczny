@@ -1,7 +1,7 @@
 "use server";
 
 import {createClient} from "@/utils/supabase/server";
-import {Category} from "@/app/admin/posts/create/page";
+import {Category} from "@/interfaces/articles";
 
 export const createPostAction = async (category: Category | null,
                                        subCategory: Category | null,
@@ -18,6 +18,7 @@ export const createPostAction = async (category: Category | null,
         console.log('image is missing')
         // handle error
     }
+
     // @ts-ignore
     const {data, error} = await supabase.storage.from('images').upload(image?.name, image, {
         cacheControl: '3600', upsert: false

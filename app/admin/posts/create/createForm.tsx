@@ -6,11 +6,12 @@ import Editor from "@/app/admin/editor";
 import {Button} from "@/components/ui/button";
 import React, {useActionState, useEffect, useState} from "react";
 import {createPostAction} from "@/app/admin/posts/actions";
-import {Category} from "@/app/admin/posts/create/page";
-import {getSubcategories} from "@/app/admin/posts/create/clientActions";
+
 import LoadingSpinner from "@/components/ui/my_elements/loadingSpinner";
 import ErrorBox from "@/components/ui/my_elements/errorBox";
 import MessageBox from "@/components/ui/my_elements/messageBox";
+import {Category} from "@/interfaces/articles";
+import {getSubcategoriesClient} from "@/actionsClient/articles/articles";
 
 export default function CreateForm({className, categories}: { className?: string, categories: Category[] | null }) {
     const [category, setCategory] = useState<string>('');
@@ -32,7 +33,7 @@ export default function CreateForm({className, categories}: { className?: string
 
     useEffect(() => {
         if (categoryObject) {
-            getSubcategories(categoryObject.id).then(res => {
+            getSubcategoriesClient(categoryObject.id).then(res => {
                 if (!res.error) {
                     setSubCategories(res.data)
                 }

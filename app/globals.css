@@ -1,6 +1,14 @@
+@import url('https://use.typekit.net/ggg1zud.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* #303633 - 150 6% 20% */
+/*  #B0BEB7 - 150 10% 72%  secondary-foreground*/
+/*  #9F9F9F - 0 0% 62%  border light ( no opacity 1px) */
+
+/*  #1B1E1D 160 5% 11% main foreground */
 
 @layer base {
   :root {
@@ -13,14 +21,14 @@
     --primary: 0 0% 9%;
     --primary-foreground: 0 0% 98%;
     --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
+    --secondary-foreground: 150 10% 72%;
     --muted: 0 0% 96.1%;
     --muted-foreground: 0 0% 45.1%;
     --accent: 0 0% 96.1%;
     --accent-foreground: 0 0% 9%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
+    --border: 0 0% 62%;
     --input: 0 0% 89.8%;
     --ring: 0 0% 3.9%;
     --radius: 0.5rem;
@@ -29,9 +37,25 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    --front-foreground: 160 5% 11%;
+    --front-background: 0 0% 100%;
+    --front-touch: 150, 14%, 84%;
+    --front-accent: 1 85% 65%;
+    --front-muted: 150, 10%, 72%;
+    --front-muted-foreground: 150 6% 20%;
+    --front-border: 150, 6%, 20%;
+
   }
 
   .dark {
+    --front-foreground: 0 0% 100%;
+    --front-background: 160 5% 11%;
+    --front-foreground-muted: 150 6% 20%;
+    --front-touch: 150, 14%, 84%;
+    --front-accent: 1 85% 65%;
+    --front-muted: 153 6% 35%;
+    --front-muted-foreground: 150 10% 72%;
+    --front-border: 150, 6%, 20%;
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
     --card: 0 0% 3.9%;
@@ -41,7 +65,7 @@
     --primary: 0 0% 98%;
     --primary-foreground: 0 0% 9%;
     --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary-foreground: 150 10% 72%;
     --muted: 0 0% 14.9%;
     --muted-foreground: 0 0% 63.9%;
     --accent: 0 0% 14.9%;
