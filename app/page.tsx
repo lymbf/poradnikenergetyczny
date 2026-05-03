@@ -10,6 +10,7 @@ export default async function Home() {
         <>
             <RecentArticles/>
             <HotTopics/>
+            <div className="w-full h-12">elo elo</div>
         </>
 
     );
