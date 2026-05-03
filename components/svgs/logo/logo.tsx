@@ -1,12 +1,12 @@
 "use client"
 
 import {useTheme} from "next-themes";
-import LightLogo from "@/components/svgs/logo/lightLogo";
-import DarkLogo from "@/components/svgs/logo/darkLogo";
 import {useEffect, useState} from "react";
+import NewLogo from "@/components/svgs/logo/newLogo";
+import NewLogoWhite from "@/components/svgs/logo/newLogoWhite";
 
 export default function Logo({className, dark}: { className?: string, dark?: boolean }) {
-    const {theme, setTheme} = useTheme()
+    const {resolvedTheme} = useTheme()
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -18,10 +18,10 @@ export default function Logo({className, dark}: { className?: string, dark?: boo
     }
 
     return(<div>
-        {theme === "dark" && !dark && <DarkLogo className={className}/>}
-        {theme === "dark" && dark && <LightLogo className={className}/>}
-        {theme === "light" && dark && <DarkLogo className={className}/>}
-        {theme === "light" && !dark && <LightLogo className={className}/>}
+        {resolvedTheme === "dark" && dark && <NewLogo className={className}/>}
+        {resolvedTheme === "dark" && !dark && <NewLogoWhite className={className}/>}
+        {resolvedTheme === "light" && !dark && <NewLogo className={className}/>}
+        {resolvedTheme === "light" && dark && <NewLogoWhite className={className}/>}
     </div>)
 
 }

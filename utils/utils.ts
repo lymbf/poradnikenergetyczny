@@ -14,3 +14,10 @@ export function encodedRedirect(
 ) {
   return redirect(`${path}?${type}=${encodeURIComponent(message)}`);
 }
+
+const stripHtml = (htmlString: string) => {
+    if (!htmlString) return "";
+    return htmlString.replace(/<[^>]+>/g, '');
+};
+
+export {stripHtml}

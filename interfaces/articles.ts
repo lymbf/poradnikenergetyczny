@@ -10,7 +10,11 @@ interface Article{
     created_at:string,
     author:Author,
     img_file:string,
-    tags?:string[]
+    tags?:string[],
+    category?: {
+        id: string;
+        name: string;
+    };
 }
 
 interface Category{

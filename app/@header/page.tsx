@@ -10,19 +10,21 @@ import Navigation from "@/components/navigation/navigation";
 export default function Page(){
 
     return(
-        <nav className="w-full flex flex-col items-center bg-front-foreground  border-b border-b-foreground/10  text-background">
-            <div className="w-full  flex justify-between items-center p-4 px-4 sm:px-8 text-sm">
-                <div className="flex gap-5 items-center font-semibold">
-                    <Link href = '/'><Logo className={'w-[174px] h-auto hover:opacity-80'}/></Link>
+        <nav className="w-full max-w-main-w flex flex-col items-center bg-front-background    text-foreground">
+            <div className="w-full  flex flex-col justify-between items-center text-sm">
+                <div className="flex h-[100px] w-full  items-center justify-center font-semibold border-b-[2px] border-b-foreground">
+                    <Link href = '/'><Logo className={'w-[168px] h-auto hover:opacity-80'}/></Link>
                 </div>
-                <Navigation className={'hidden 2xl:flex w-auto'}/>
-                <div className={'flex flex-row'}>
-                    {!hasEnvVars ? <EnvVarWarning/> : <HeaderAuth  front={true} className={'mr-[10px]'}/>}
-                    <div className={'hidden sm:block ml-2'}><ThemeSwitcher/></div>
+                <div className={'flex justify-center items-center w-full py-[15px] border-b-[1px] border-b-foreground/5'}>
+                    <Navigation className={'hidden sm:flex w-full max-w-none px-8  '}/>
+
                 </div>
+                {/*<div className={'flex flex-row'}>*/}
+                {/*    {!hasEnvVars ? <EnvVarWarning/> : <HeaderAuth  front={true} className={'mr-[10px]'}/>}*/}
+                {/*    <div className={'hidden sm:block ml-2'}><ThemeSwitcher/></div>*/}
+                {/*</div>*/}
 
             </div>
-            <Navigation className={'hidden sm:flex 2xl:hidden justify-start w-full max-w-none px-8 pb-2 '}/>
         </nav>
     )
 }
